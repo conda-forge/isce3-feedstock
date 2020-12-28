@@ -19,12 +19,12 @@ requirements:
     - {{ compiler('cxx') }}
     - cmake
     - cython
-    - gtest
     - ninja
   host:
     - eigen
     - fftw
     - gdal
+    - gtest
     - numpy
     - pybind11
     - python
