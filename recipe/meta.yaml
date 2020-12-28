@@ -1,5 +1,5 @@
 {% set name = "isce3" %}
-{% set version = "0.1.0" %}
+{% set version = "0.1.1" %}
 
 package:
   name: {{ name|lower }}
@@ -7,14 +7,14 @@ package:
 
 source:
   url: https://github.com/isce-framework/isce3/archive/v{{ version }}.tar.gz
-  sha256: 9de6a6839818f2553e2f31e49ca5335a3c41b77e4482777e17f376d131da589b
+  sha256: 54da2b3d1f95aaed461b70c3f5fcb6e909e3d23bc19b2bdc7d3646f10b73d675
   patches:
     - fix-find-numpy.patch
     - fix-missing-includes.patch
 
 build:
-  number: 2
-  skip: True  # [win or py<36]
+  number: 0
+  skip: true  # [win or py<36]
 
 requirements:
   build:
@@ -65,7 +65,7 @@ about:
   license: Apache-2.0
   license_family: Apache
   license_file: LICENSE
-  summary: 'The InSAR Scientific Computing Environment, version 3'
+  summary: The InSAR Scientific Computing Environment, version 3
 
   description: |
     The InSAR Scientific Computing Environment (ISCE) is an open source library
