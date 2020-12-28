@@ -8,9 +8,6 @@ package:
 source:
   url: https://github.com/isce-framework/isce3/archive/v{{ version }}.tar.gz
   sha256: 54da2b3d1f95aaed461b70c3f5fcb6e909e3d23bc19b2bdc7d3646f10b73d675
-  patches:
-    - fix-find-numpy.patch
-    - fix-missing-includes.patch
 
 build:
   number: 0
