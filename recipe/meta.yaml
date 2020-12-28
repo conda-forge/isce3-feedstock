@@ -22,7 +22,6 @@ requirements:
     - gtest
     - ninja
   host:
-    - cereal
     - eigen
     - fftw
     - gdal
