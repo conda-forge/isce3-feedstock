@@ -1,0 +1,40 @@
+diff --git a/tests/extern/pyre/CMakeLists.txt b/tests/extern/pyre/CMakeLists.txt
+index 520c8c785..7e76284c1 100644
+--- a/tests/extern/pyre/CMakeLists.txt
++++ b/tests/extern/pyre/CMakeLists.txt
+@@ -1,3 +1,8 @@
+ add_test(import_pyre.py ${Python_EXECUTABLE} ${CMAKE_CURRENT_LIST_DIR}/import_pyre.py)
+-set_property(TEST import_pyre.py PROPERTY ENVIRONMENT
+-    PYTHONPATH=$ENV{DESTDIR}/${ISCE_PACKAGESDIR_FULL})
++
++if(DEFINED ENV{DESTDIR})
++    set(PYTEST_PYTHONPATH $ENV{DESTDIR}/${ISCE_PACKAGESDIR_FULL})
++else()
++    set(PYTEST_PYTHONPATH ${ISCE_PACKAGESDIR_FULL})
++endif()
++set_property(TEST import_pyre.py PROPERTY ENVIRONMENT PYTHONPATH=${PYTEST_PYTHONPATH})
+diff --git a/tests/python/CMakeLists.txt b/tests/python/CMakeLists.txt
+index 874b18ed2..cc03ce59e 100644
+--- a/tests/python/CMakeLists.txt
++++ b/tests/python/CMakeLists.txt
+@@ -1,8 +1,17 @@
+ # adjust the PYTHONPATH to point to the freshly built packages
+-set(PYTEST_PYTHONPATH
+-    $ENV{DESTDIR}/${ISCE_PACKAGESDIR_FULL}:${ISCE_BUILDPACKAGESDIR}:$ENV{PYTHONPATH})
++if(DEFINED ENV{DESTDIR})
++    set(PYTEST_PYTHONPATH $ENV{DESTDIR}/${ISCE_PACKAGESDIR_FULL})
++else()
++    set(PYTEST_PYTHONPATH ${ISCE_PACKAGESDIR_FULL})
++endif()
++list(APPEND PYTEST_PYTHONPATH ${ISCE_BUILDPACKAGESDIR} $ENV{PYTHONPATH})
++string(REPLACE ";" ":" PYTEST_PYTHONPATH "${PYTEST_PYTHONPATH}")
+ 
+-set(PYTEST_LD_LIBRARY_PATH $ENV{DESTDIR}/${CMAKE_INSTALL_FULL_LIBDIR})
++if(DEFINED ENV{DESTDIR})
++    set(PYTEST_LD_LIBRARY_PATH $ENV{DESTDIR}/${CMAKE_INSTALL_FULL_LIBDIR})
++else()
++    set(PYTEST_LD_LIBRARY_PATH ${CMAKE_INSTALL_FULL_LIBDIR})
++endif()
+ 
+ # build the custom configuration file
+ configure_file(iscetest.py.in "${ISCE_BUILDPACKAGESDIR}/iscetest.py")
