@@ -15,4 +15,4 @@ cmake .. \
 
 ninja install
 
-ctest --output-on-failure -E workflows.stage_dem
+ctest --output-on-failure -E '(workflows.stage_dem|pybind.focus.presum)'
