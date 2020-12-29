@@ -21,9 +21,9 @@ requirements:
     - {{ compiler('c') }}
     - {{ compiler('cxx') }}
     - cmake
-    - cython
     - ninja
   host:
+    - cython
     - eigen
     - fftw
     - gdal
