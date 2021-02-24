@@ -5,7 +5,6 @@ mkdir build && cd build
 # Build without CUDA support or vendored libs
 cmake .. \
     -DPython_EXECUTABLE=$PYTHON \
-    -DHAVE_PYRE=YES \
     -DISCE3_FETCH_DEPS=OFF \
     -DCMAKE_BUILD_TYPE=Release \
     -DCMAKE_INSTALL_PREFIX=$PREFIX \
