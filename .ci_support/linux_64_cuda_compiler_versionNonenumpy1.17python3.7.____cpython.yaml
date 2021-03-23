@@ -8,6 +8,10 @@ channel_sources:
 - conda-forge,defaults
 channel_targets:
 - conda-forge main
+cuda_compiler:
+- nvcc
+cuda_compiler_version:
+- None
 cxx_compiler:
 - gxx
 cxx_compiler_version:
@@ -18,12 +22,18 @@ fftw:
 - '3'
 gdal:
 - '3.1'
+hdf5:
+- 1.10.6
+libgdal:
+- '3.1'
 numpy:
-- '1.16'
+- '1.17'
 pin_run_as_build:
   fftw:
     max_pin: x
   gdal:
+    max_pin: x.x
+  libgdal:
     max_pin: x.x
   python:
     min_pin: x.x
@@ -35,7 +45,8 @@ target_platform:
 zip_keys:
 - - c_compiler_version
   - cxx_compiler_version
-- - cdt_name
+- - cuda_compiler_version
+  - cdt_name
   - docker_image
 - - python
   - numpy
