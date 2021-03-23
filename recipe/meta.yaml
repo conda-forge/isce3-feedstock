@@ -1,5 +1,6 @@
 {% set name = "isce3" %}
 {% set version = "0.2.0" %}
+{% set number = 1 %}
 {% set isce3_proc_type = "cuda" if cuda_compiler_version != "None" else "cpu" %}
 
 package:
@@ -11,7 +12,7 @@ source:
   sha256: 1f63b64811e4bb5b643ccf890842140f85c4179ffae0becc33f1ca58eb98075c
 
 build:
-  number: 0
+  number: {{ number }}
   skip: true  # [win or py<36]
 
 test:
