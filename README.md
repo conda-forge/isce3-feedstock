@@ -39,52 +39,80 @@ Current build status
         <table>
           <thead><tr><th>Variant</th><th>Status</th></tr></thead>
           <tbody><tr>
-              <td>linux_64_numpy1.16python3.6.____cpython</td>
+              <td>linux_64_cuda_compiler_version10.2numpy1.17python3.6.____cpython</td>
               <td>
                 <a href="https://dev.azure.com/conda-forge/feedstock-builds/_build/latest?definitionId=11070&branchName=master">
-                  <img src="https://dev.azure.com/conda-forge/feedstock-builds/_apis/build/status/isce3-feedstock?branchName=master&jobName=linux&configuration=linux_64_numpy1.16python3.6.____cpython" alt="variant">
+                  <img src="https://dev.azure.com/conda-forge/feedstock-builds/_apis/build/status/isce3-feedstock?branchName=master&jobName=linux&configuration=linux_64_cuda_compiler_version10.2numpy1.17python3.6.____cpython" alt="variant">
                 </a>
               </td>
             </tr><tr>
-              <td>linux_64_numpy1.16python3.7.____cpython</td>
+              <td>linux_64_cuda_compiler_version10.2numpy1.17python3.7.____cpython</td>
               <td>
                 <a href="https://dev.azure.com/conda-forge/feedstock-builds/_build/latest?definitionId=11070&branchName=master">
-                  <img src="https://dev.azure.com/conda-forge/feedstock-builds/_apis/build/status/isce3-feedstock?branchName=master&jobName=linux&configuration=linux_64_numpy1.16python3.7.____cpython" alt="variant">
+                  <img src="https://dev.azure.com/conda-forge/feedstock-builds/_apis/build/status/isce3-feedstock?branchName=master&jobName=linux&configuration=linux_64_cuda_compiler_version10.2numpy1.17python3.7.____cpython" alt="variant">
                 </a>
               </td>
             </tr><tr>
-              <td>linux_64_numpy1.16python3.8.____cpython</td>
+              <td>linux_64_cuda_compiler_version10.2numpy1.17python3.8.____cpython</td>
               <td>
                 <a href="https://dev.azure.com/conda-forge/feedstock-builds/_build/latest?definitionId=11070&branchName=master">
-                  <img src="https://dev.azure.com/conda-forge/feedstock-builds/_apis/build/status/isce3-feedstock?branchName=master&jobName=linux&configuration=linux_64_numpy1.16python3.8.____cpython" alt="variant">
+                  <img src="https://dev.azure.com/conda-forge/feedstock-builds/_apis/build/status/isce3-feedstock?branchName=master&jobName=linux&configuration=linux_64_cuda_compiler_version10.2numpy1.17python3.8.____cpython" alt="variant">
                 </a>
               </td>
             </tr><tr>
-              <td>linux_64_numpy1.19python3.9.____cpython</td>
+              <td>linux_64_cuda_compiler_version10.2numpy1.19python3.9.____cpython</td>
               <td>
                 <a href="https://dev.azure.com/conda-forge/feedstock-builds/_build/latest?definitionId=11070&branchName=master">
-                  <img src="https://dev.azure.com/conda-forge/feedstock-builds/_apis/build/status/isce3-feedstock?branchName=master&jobName=linux&configuration=linux_64_numpy1.19python3.9.____cpython" alt="variant">
+                  <img src="https://dev.azure.com/conda-forge/feedstock-builds/_apis/build/status/isce3-feedstock?branchName=master&jobName=linux&configuration=linux_64_cuda_compiler_version10.2numpy1.19python3.9.____cpython" alt="variant">
                 </a>
               </td>
             </tr><tr>
-              <td>osx_64_numpy1.16python3.6.____cpython</td>
+              <td>linux_64_cuda_compiler_versionNonenumpy1.17python3.6.____cpython</td>
               <td>
                 <a href="https://dev.azure.com/conda-forge/feedstock-builds/_build/latest?definitionId=11070&branchName=master">
-                  <img src="https://dev.azure.com/conda-forge/feedstock-builds/_apis/build/status/isce3-feedstock?branchName=master&jobName=osx&configuration=osx_64_numpy1.16python3.6.____cpython" alt="variant">
+                  <img src="https://dev.azure.com/conda-forge/feedstock-builds/_apis/build/status/isce3-feedstock?branchName=master&jobName=linux&configuration=linux_64_cuda_compiler_versionNonenumpy1.17python3.6.____cpython" alt="variant">
                 </a>
               </td>
             </tr><tr>
-              <td>osx_64_numpy1.16python3.7.____cpython</td>
+              <td>linux_64_cuda_compiler_versionNonenumpy1.17python3.7.____cpython</td>
               <td>
                 <a href="https://dev.azure.com/conda-forge/feedstock-builds/_build/latest?definitionId=11070&branchName=master">
-                  <img src="https://dev.azure.com/conda-forge/feedstock-builds/_apis/build/status/isce3-feedstock?branchName=master&jobName=osx&configuration=osx_64_numpy1.16python3.7.____cpython" alt="variant">
+                  <img src="https://dev.azure.com/conda-forge/feedstock-builds/_apis/build/status/isce3-feedstock?branchName=master&jobName=linux&configuration=linux_64_cuda_compiler_versionNonenumpy1.17python3.7.____cpython" alt="variant">
                 </a>
               </td>
             </tr><tr>
-              <td>osx_64_numpy1.16python3.8.____cpython</td>
+              <td>linux_64_cuda_compiler_versionNonenumpy1.17python3.8.____cpython</td>
               <td>
                 <a href="https://dev.azure.com/conda-forge/feedstock-builds/_build/latest?definitionId=11070&branchName=master">
-                  <img src="https://dev.azure.com/conda-forge/feedstock-builds/_apis/build/status/isce3-feedstock?branchName=master&jobName=osx&configuration=osx_64_numpy1.16python3.8.____cpython" alt="variant">
+                  <img src="https://dev.azure.com/conda-forge/feedstock-builds/_apis/build/status/isce3-feedstock?branchName=master&jobName=linux&configuration=linux_64_cuda_compiler_versionNonenumpy1.17python3.8.____cpython" alt="variant">
+                </a>
+              </td>
+            </tr><tr>
+              <td>linux_64_cuda_compiler_versionNonenumpy1.19python3.9.____cpython</td>
+              <td>
+                <a href="https://dev.azure.com/conda-forge/feedstock-builds/_build/latest?definitionId=11070&branchName=master">
+                  <img src="https://dev.azure.com/conda-forge/feedstock-builds/_apis/build/status/isce3-feedstock?branchName=master&jobName=linux&configuration=linux_64_cuda_compiler_versionNonenumpy1.19python3.9.____cpython" alt="variant">
+                </a>
+              </td>
+            </tr><tr>
+              <td>osx_64_numpy1.17python3.6.____cpython</td>
+              <td>
+                <a href="https://dev.azure.com/conda-forge/feedstock-builds/_build/latest?definitionId=11070&branchName=master">
+                  <img src="https://dev.azure.com/conda-forge/feedstock-builds/_apis/build/status/isce3-feedstock?branchName=master&jobName=osx&configuration=osx_64_numpy1.17python3.6.____cpython" alt="variant">
+                </a>
+              </td>
+            </tr><tr>
+              <td>osx_64_numpy1.17python3.7.____cpython</td>
+              <td>
+                <a href="https://dev.azure.com/conda-forge/feedstock-builds/_build/latest?definitionId=11070&branchName=master">
+                  <img src="https://dev.azure.com/conda-forge/feedstock-builds/_apis/build/status/isce3-feedstock?branchName=master&jobName=osx&configuration=osx_64_numpy1.17python3.7.____cpython" alt="variant">
+                </a>
+              </td>
+            </tr><tr>
+              <td>osx_64_numpy1.17python3.8.____cpython</td>
+              <td>
+                <a href="https://dev.azure.com/conda-forge/feedstock-builds/_build/latest?definitionId=11070&branchName=master">
+                  <img src="https://dev.azure.com/conda-forge/feedstock-builds/_apis/build/status/isce3-feedstock?branchName=master&jobName=osx&configuration=osx_64_numpy1.17python3.8.____cpython" alt="variant">
                 </a>
               </td>
             </tr><tr>
@@ -108,6 +136,8 @@ Current release info
 | Name | Downloads | Version | Platforms |
 | --- | --- | --- | --- |
 | [![Conda Recipe](https://img.shields.io/badge/recipe-isce3-green.svg)](https://anaconda.org/conda-forge/isce3) | [![Conda Downloads](https://img.shields.io/conda/dn/conda-forge/isce3.svg)](https://anaconda.org/conda-forge/isce3) | [![Conda Version](https://img.shields.io/conda/vn/conda-forge/isce3.svg)](https://anaconda.org/conda-forge/isce3) | [![Conda Platforms](https://img.shields.io/conda/pn/conda-forge/isce3.svg)](https://anaconda.org/conda-forge/isce3) |
+| [![Conda Recipe](https://img.shields.io/badge/recipe-isce3--cpu-green.svg)](https://anaconda.org/conda-forge/isce3-cpu) | [![Conda Downloads](https://img.shields.io/conda/dn/conda-forge/isce3-cpu.svg)](https://anaconda.org/conda-forge/isce3-cpu) | [![Conda Version](https://img.shields.io/conda/vn/conda-forge/isce3-cpu.svg)](https://anaconda.org/conda-forge/isce3-cpu) | [![Conda Platforms](https://img.shields.io/conda/pn/conda-forge/isce3-cpu.svg)](https://anaconda.org/conda-forge/isce3-cpu) |
+| [![Conda Recipe](https://img.shields.io/badge/recipe-isce3--cuda-green.svg)](https://anaconda.org/conda-forge/isce3-cuda) | [![Conda Downloads](https://img.shields.io/conda/dn/conda-forge/isce3-cuda.svg)](https://anaconda.org/conda-forge/isce3-cuda) | [![Conda Version](https://img.shields.io/conda/vn/conda-forge/isce3-cuda.svg)](https://anaconda.org/conda-forge/isce3-cuda) | [![Conda Platforms](https://img.shields.io/conda/pn/conda-forge/isce3-cuda.svg)](https://anaconda.org/conda-forge/isce3-cuda) |
 
 Installing isce3
 ================
@@ -118,10 +148,10 @@ Installing `isce3` from the `conda-forge` channel can be achieved by adding `con
 conda config --add channels conda-forge
 ```
 
-Once the `conda-forge` channel has been enabled, `isce3` can be installed with:
+Once the `conda-forge` channel has been enabled, `isce3, isce3-cpu, isce3-cuda` can be installed with:
 
 ```
-conda install isce3
+conda install isce3 isce3-cpu isce3-cuda
 ```
 
 It is possible to list all of the versions of `isce3` available on your platform with:
