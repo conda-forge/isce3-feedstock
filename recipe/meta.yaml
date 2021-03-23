@@ -1,5 +1,6 @@
 {% set name = "isce3" %}
 {% set version = "0.2.0" %}
+{% set isce3_proc_type = "cuda" if cuda_compiler_version != "None" else "cpu" %}
 
 package:
   name: {{ name|lower }}
@@ -13,51 +14,80 @@ build:
   number: 0
   skip: true  # [win or py<36]
 
-requirements:
-  build:
-    - {{ compiler('c') }}
-    - {{ compiler('cxx') }}
-    - cmake
-    - ninja
-  host:
-    - cython
-    - eigen
-    - fftw
-    - gdal
-    - gmock
-    - gtest
-    - numpy
-    - pybind11
-    - python
-    - pyre
-
-    # Needed for ctests in build.sh
-    - h5py
-    - pytest
-    - ruamel.yaml
-    - shapely
-    - yamale
-  run:
-    - fftw
-    - gdal
-    - h5py
-    - hdf5
-    - libgdal
-    - llvm-openmp  # [osx]
-    - {{ pin_compatible('numpy') }}
-    - _openmp_mutex  # [not osx]
-    - pyre
-    - python
-    - ruamel.yaml
-    - shapely
-    - yamale
-
 test:
   imports:
     - isce3
     - nisar
     - pybind_isce3
     - pybind_nisar
+
+outputs:
+  # A meta-package to select CPU or GPU build for faiss.
+  - name: {{ name|lower }}
+    version: {{ version }}
+    build:
+      string: "py{{ CONDA_PY }}h{{ PKG_HASH }}_{{ number }}_{{ isce3_proc_type }}"                                                  # [cuda_compiler_version == "None"]
+      string: "py{{ CONDA_PY }}cuda{{ cuda_compiler_version|replace('.', '') }}h{{ PKG_HASH }}_{{ number }}_{{ isce3_proc_type }}"  # [cuda_compiler_version != "None"]
+    requirements:
+      build:
+        - {{ compiler('c') }}
+        - {{ compiler('cxx') }}
+        - {{ compiler('cuda') }}  # [cuda_compiler_version != "None"]
+        - cmake
+        - ninja
+      host:
+        - cython
+        - eigen
+        - fftw
+        - gdal
+        - gmock
+        - gtest
+        - numpy
+        - pybind11
+        - python
+        - pyre
+
+        # Needed for ctests in build.sh
+        - h5py
+        - pytest
+        - ruamel.yaml
+        - shapely
+        - yamale
+      run:
+        - fftw
+        - gdal
+        - h5py
+        - hdf5
+        - libgdal
+        - llvm-openmp  # [osx]
+        - {{ pin_compatible('numpy') }}
+        - _openmp_mutex  # [not osx]
+        - pyre
+        - python
+        - ruamel.yaml
+        - shapely
+        - yamale
+
+  - name: isce3-cpu
+    build:
+      skip: true  # [cuda_compiler_version != "None"]
+    requirements:
+      run:
+        - isce3 ={{ version }}=*_cpu
+    test:
+      imports:
+        - isce3
+
+  - name: isce3-cuda
+    build:
+      skip: true  # [cuda_compiler_version == "None"]
+    requirements:
+      run:
+        - isce3 ={{ version }}=*_cuda
+    test:
+      imports:
+        - isce3
+
 
 about:
   home: https://github.com/isce-framework/isce3
