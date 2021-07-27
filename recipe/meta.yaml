@@ -35,6 +35,7 @@ requirements:
     - h5py
     - pytest
     - ruamel.yaml
+    - scipy
     - shapely
     - yamale
   run:
@@ -49,6 +50,7 @@ requirements:
     - pyre
     - python
     - ruamel.yaml
+    - scipy
     - shapely
     - yamale
 
