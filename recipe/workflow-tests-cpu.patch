@@ -1,0 +1,77 @@
+--- a/tests/python/packages/CMakeLists.txt
++++ b/tests/python/packages/CMakeLists.txt
+@@ -7,15 +7,14 @@ pybind_nisar/workflows/focus.py
+ pybind_nisar/workflows/stage_dem.py
+ pybind_nisar/workflows/gcov.py
+ pybind_nisar/workflows/geo2rdr.py
++pybind_nisar/workflows/geocode_insar.py
+ pybind_nisar/workflows/gslc.py
+ pybind_nisar/workflows/gpu_check.py
+-pybind_nisar/workflows/geocode_insar.py
+ pybind_nisar/workflows/insar.py
+ pybind_nisar/workflows/process_args.py
+ pybind_nisar/workflows/point_target_info.py
+ pybind_nisar/workflows/rdr2geo.py
+ pybind_nisar/workflows/resample_slc.py
+-pybind_nisar/workflows/rubbersheet.py
+ pybind_nisar/workflows/unwrap.py
+ pybind_nisar/workflows/antenna_parser.py
+ )
+@@ -45,17 +44,19 @@ set_tests_properties(test.python.pkg.pybind_nisar.workflows.geo2rdr PROPERTIES
+              DEPENDS test.python.pkg.pybind_nisar.workflows.rdr2geo)
+ set_tests_properties(test.python.pkg.pybind_nisar.workflows.resample_slc PROPERTIES
+              DEPENDS test.python.pkg.pybind_nisar.workflows.geo2rdr)
+-if(WITH_CUDA)
+-    set_tests_properties(test.python.pkg.pybind_nisar.workflows.dense_offsets PROPERTIES
+-                 DEPENDS test.python.pkg.pybind_nisar.workflows.cuda_insar)
+-    set_tests_properties(test.python.pkg.pybind_nisar.workflows.rubbersheet PROPERTIES
+-                 DEPENDS test.python.pkg.pybind_nisar.workflows.cuda_insar)
+-endif()
+ set_tests_properties(test.python.pkg.pybind_nisar.workflows.crossmul PROPERTIES
+              DEPENDS test.python.pkg.pybind_nisar.workflows.resample_slc)
+ # using rdr2geo outputs as RUNW rasters to confirm geocode run
+ # using RUNW HDF5 needed as a verifiable dummy RUNW input
+ set_tests_properties(test.python.pkg.pybind_nisar.workflows.geocode_insar PROPERTIES
+              DEPENDS "test.python.pkg.pybind_nisar.workflows.rdr2geo;test.python.pkg.pybind_nisar.workflows.unwrap")
++
+ set_tests_properties(test.python.pkg.pybind_nisar.workflows.insar PROPERTIES
+              DEPENDS test.python.pkg.pybind_nisar.workflows.geocode_insar)
++
++if(WITH_CUDA)
++    set_tests_properties(test.python.pkg.pybind_nisar.workflows.dense_offsets PROPERTIES
++                 DEPENDS test.python.pkg.pybind_nisar.workflows.cuda_insar)
++    set_tests_properties(test.python.pkg.pybind_nisar.workflows.rubbersheet PROPERTIES
++                 DEPENDS test.python.pkg.pybind_nisar.workflows.cuda_insar)
++endif()
+--- a/tests/python/packages/pybind_nisar/workflows/geocode_insar.py
++++ b/tests/python/packages/pybind_nisar/workflows/geocode_insar.py
+@@ -5,6 +5,7 @@ from osgeo import gdal
+ import h5py
+ import numpy as np
+ 
++import isce3
+ from pybind_nisar.workflows import geocode_insar, h5_prep
+ from pybind_nisar.workflows.geocode_insar_runconfig import GeocodeInsarRunConfig
+ 
+@@ -16,6 +17,10 @@ def test_geocode_run():
+     '''
+     test_yaml_path = os.path.join(iscetest.data, 'insar_test.yaml')
+     for pu in ['cpu', 'gpu']:
++        # Skip GPU geocode insar if cuda not included
++        if pu == 'gpu' and not hasattr(isce3, 'cuda'):
++            continue
++
+         with open(test_yaml_path) as fh_test_yaml:
+             test_yaml = fh_test_yaml.read().replace('@ISCETEST@', iscetest.data). \
+                 replace('@TEST_OUTPUT@', f'{pu}_gunw.h5'). \
+@@ -73,6 +78,10 @@ def test_geocode_validate():
+     # prepare the check gunw hdf5
+     scratch_path = '.'
+     for pu in ['cpu', 'gpu']:
++        # Skip GPU geocode insar if cuda not included
++        if pu == 'gpu' and not hasattr(isce3, 'cuda'):
++            continue
++
+         path_gunw = os.path.join(scratch_path, f'{pu}_gunw.h5')
+         product_path = 'science/LSAR/GUNW/grids/frequencyA/interferogram/HH'
+         with h5py.File(path_gunw, 'r', libver='latest', swmr=True) as h:
