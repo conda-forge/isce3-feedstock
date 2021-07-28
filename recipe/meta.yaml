@@ -20,7 +20,6 @@ requirements:
     - cmake
     - ninja
   host:
-    - cython
     - eigen
     - fftw
     - gdal
@@ -57,7 +56,6 @@ requirements:
 test:
   imports:
     - isce3
-    - nisar
     - pybind_isce3
     - pybind_nisar
 
