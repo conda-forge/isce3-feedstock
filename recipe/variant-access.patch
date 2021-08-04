@@ -1,0 +1,45 @@
+commit 5823f559ed70a4842f5c34c89c017348c68a8c42
+Author: Ryan Burns <rtburns@jpl.nasa.gov>
+Date:   Wed Aug 4 10:21:10 2021 -0700
+
+    Fix variant usage for macOS < 10.14
+    
+    macOS does not support std::bad_variant_access until 10.14,
+    and some package managers target macos < 10.14, so we need to avoid
+    parts of std::variant which might raise such exceptions
+
+diff --git a/cxx/isce3/geometry/TopoLayers.cpp b/cxx/isce3/geometry/TopoLayers.cpp
+index 8f18520d..4ac89d0a 100644
+--- a/cxx/isce3/geometry/TopoLayers.cpp
++++ b/cxx/isce3/geometry/TopoLayers.cpp
+@@ -1,6 +1,7 @@
+ #include "TopoLayers.h"
+ 
+ #include <iterator>
++#include <stdexcept>
+ #include <variant>
+ #include <vector>
+ 
+@@ -19,11 +20,17 @@ void TopoLayers::writeData(size_t xidx, size_t yidx)
+ #pragma omp parallel for
+     for (auto i = 0; i < valarrays.size(); ++i) {
+         if (rasters[i]) {
+-            std::visit(
+-                    [&](const auto& ptr) {
+-                        rasters[i]->setBlock(ptr, xidx, yidx, _width, _length);
+-                    },
+-                    valarrays[i]);
++
++            // std::bad_variant_access requires macOS 10.14
++            if (auto* p = std::get_if<double*>(&valarrays[i])) {
++                rasters[i]->setBlock(*p, xidx, yidx, _width, _length);
++            } else if (auto* p = std::get_if<float*>(&valarrays[i])) {
++                rasters[i]->setBlock(*p, xidx, yidx, _width, _length);
++            } else if (auto* p = std::get_if<short*>(&valarrays[i])) {
++                rasters[i]->setBlock(*p, xidx, yidx, _width, _length);
++            } else {
++                throw std::logic_error("invalid variant type");
++            }
+         }
+     }
+ }
