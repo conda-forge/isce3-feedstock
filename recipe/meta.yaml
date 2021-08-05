@@ -1,5 +1,5 @@
 {% set name = "isce3" %}
-{% set version = "0.3.0" %}
+{% set version = "0.4.0" %}
 
 package:
   name: {{ name|lower }}
@@ -7,7 +7,10 @@ package:
 
 source:
   url: https://github.com/isce-framework/isce3/archive/v{{ version }}.tar.gz
-  sha256: 58af68df13fb7de100997a66e0a4d4cbb24273d243c9b505fcf93fbe4f4b004d
+  sha256: b6b7be6f35dfb30a3ed13b7f2cdd41f5f97a05121ef1bb3d27f1d5b7befe706d
+  patches:
+    - variant-access.patch
+    - workflow-tests-cpu.patch
 
 build:
   number: 0
