@@ -12,6 +12,7 @@ source:
     - variant-access.patch
     - workflow-tests-cpu.patch
     - h5_112.patch
+    - eigen340.patch
 
 build:
   number: 2
