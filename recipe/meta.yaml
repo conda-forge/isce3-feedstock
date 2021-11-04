@@ -52,7 +52,7 @@ requirements:
     - llvm-openmp  # [osx]
     - {{ pin_compatible('numpy') }}
     - _openmp_mutex  # [not osx]
-    - pyre
+    - pyre =1.9.9
     - python
     - ruamel.yaml
     - scipy
