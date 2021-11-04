@@ -11,9 +11,12 @@ source:
   patches:
     - variant-access.patch
     - workflow-tests-cpu.patch
+    - h5_112.patch
+    - eigen340.patch
+    - fix-hdr-wkt.patch
 
 build:
-  number: 1
+  number: 2
   skip: true  # [win or py<36]
 
 requirements:
@@ -31,7 +34,7 @@ requirements:
     - numpy
     - pybind11
     - python
-    - pyre
+    - pyre =1.9.9
 
     # Needed for ctests in build.sh
     - h5py
@@ -49,7 +52,7 @@ requirements:
     - llvm-openmp  # [osx]
     - {{ pin_compatible('numpy') }}
     - _openmp_mutex  # [not osx]
-    - pyre
+    - pyre =1.9.9
     - python
     - ruamel.yaml
     - scipy
