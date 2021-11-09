@@ -60,6 +60,8 @@ requirements:
     - yamale
 
 test:
+  commands:
+    - ctest --output-on-failure -E '(workflows.stage_dem|pybind.focus.presum)'
   imports:
     - isce3
     - pybind_isce3
