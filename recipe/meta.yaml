@@ -16,7 +16,7 @@ source:
     - fix-hdr-wkt.patch
 
 build:
-  number: 2
+  number: 3
   skip: true  # [win or py<36]
 
 requirements:
