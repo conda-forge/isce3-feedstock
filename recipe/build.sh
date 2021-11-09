@@ -13,5 +13,3 @@ cmake .. \
     -GNinja
 
 ninja install
-
-ctest --output-on-failure -E '(workflows.stage_dem|pybind.focus.presum)'
