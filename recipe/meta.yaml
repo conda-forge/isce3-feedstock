@@ -61,7 +61,6 @@ test:
   imports:
     - isce3
     - pybind_isce3
-    - pybind_nisar
 
 about:
   home: https://github.com/isce-framework/isce3
