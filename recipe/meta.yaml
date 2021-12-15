@@ -1,5 +1,5 @@
 {% set name = "isce3" %}
-{% set version = "0.4.0" %}
+{% set version = "0.4.1" %}
 
 package:
   name: {{ name|lower }}
@@ -7,16 +7,10 @@ package:
 
 source:
   url: https://github.com/isce-framework/isce3/archive/v{{ version }}.tar.gz
-  sha256: b6b7be6f35dfb30a3ed13b7f2cdd41f5f97a05121ef1bb3d27f1d5b7befe706d
-  patches:
-    - variant-access.patch
-    - workflow-tests-cpu.patch
-    - h5_112.patch
-    - eigen340.patch
-    - fix-hdr-wkt.patch
+  sha256: a7862e82e055921264c5a83c7ede0bf32d751e59a45010a73dc73dbe15266215
 
 build:
-  number: 4
+  number: 0
   skip: true  # [win or py<36]
 
 requirements:
@@ -67,7 +61,6 @@ test:
   imports:
     - isce3
     - pybind_isce3
-    - pybind_nisar
 
 about:
   home: https://github.com/isce-framework/isce3
