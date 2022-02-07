@@ -28,7 +28,7 @@ requirements:
     - numpy
     - pybind11
     - python
-    - pyre =1.9.9
+    - pyre
 
     # Needed for ctests in build.sh
     - h5py
@@ -46,7 +46,7 @@ requirements:
     - llvm-openmp  # [osx]
     - {{ pin_compatible('numpy') }}
     - _openmp_mutex  # [not osx]
-    - pyre =1.9.9
+    - pyre
     - python
     - ruamel.yaml
     - scipy
