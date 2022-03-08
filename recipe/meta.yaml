@@ -8,6 +8,8 @@ package:
 source:
   url: https://github.com/isce-framework/isce3/archive/v{{ version }}.tar.gz
   sha256: fbd371568923f3991ecd68b7fe88e928173a89502f1c58c2ec2c098d1ccc2832
+  patches:
+    - python37.patch
 
 build:
   number: 0
