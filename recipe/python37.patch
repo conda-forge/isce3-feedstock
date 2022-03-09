@@ -1,0 +1,107 @@
+From 2d8b5819d039a4f012e0b370c9df866bb110aa80 Mon Sep 17 00:00:00 2001
+From: Geoffrey M Gunter <geoffrey.m.gunter@gmail.com>
+Date: Tue, 8 Mar 2022 21:01:27 +0000
+Subject: [PATCH 1/2] Remove use of position-only parameter syntax
+
+(requires Python 3.8)
+---
+ python/packages/isce3/unwrap/snaphu.py       | 2 +-
+ tests/python/packages/isce3/unwrap/snaphu.py | 2 +-
+ 2 files changed, 2 insertions(+), 2 deletions(-)
+
+diff --git a/python/packages/isce3/unwrap/snaphu.py b/python/packages/isce3/unwrap/snaphu.py
+index 76f7acf3aa..47ee15ed4e 100644
+--- a/python/packages/isce3/unwrap/snaphu.py
++++ b/python/packages/isce3/unwrap/snaphu.py
+@@ -656,7 +656,7 @@ class PhaseStddevModelParams:
+ 
+ 
+ @contextlib.contextmanager
+-def scratch_directory(d: Optional[os.PathLike] = None, /) -> pathlib.Path:
++def scratch_directory(d: Optional[os.PathLike] = None) -> pathlib.Path:
+     """Context manager that creates a (possibly temporary) filesystem directory
+ 
+     If the input is a path-like object, a directory will be created at the
+diff --git a/tests/python/packages/isce3/unwrap/snaphu.py b/tests/python/packages/isce3/unwrap/snaphu.py
+index 3b5a851c41..fae4160d7e 100644
+--- a/tests/python/packages/isce3/unwrap/snaphu.py
++++ b/tests/python/packages/isce3/unwrap/snaphu.py
+@@ -131,7 +131,7 @@ def simulate_terrain(
+     return z[:length, :width]
+ 
+ 
+-def jaccard_similarity(a, b, /):
++def jaccard_similarity(a, b):
+     """Compute the Jaccard similarity coefficient (intersect-over-union) of two
+     boolean arrays.
+ 
+
+From 8057a02a086fe824bb2188733a8445d950caafc1 Mon Sep 17 00:00:00 2001
+From: Geoffrey M Gunter <geoffrey.m.gunter@gmail.com>
+Date: Tue, 8 Mar 2022 21:12:36 +0000
+Subject: [PATCH 2/2] Remove usage of `typing.Literal`
+
+(requires Python 3.8)
+---
+ python/packages/isce3/unwrap/snaphu.py | 21 +++------------------
+ 1 file changed, 3 insertions(+), 18 deletions(-)
+
+diff --git a/python/packages/isce3/unwrap/snaphu.py b/python/packages/isce3/unwrap/snaphu.py
+index 47ee15ed4e..bcce03d8d6 100644
+--- a/python/packages/isce3/unwrap/snaphu.py
++++ b/python/packages/isce3/unwrap/snaphu.py
+@@ -3,25 +3,13 @@ import os
+ import pathlib
+ import tempfile
+ from dataclasses import dataclass
+-from typing import Literal, Optional, Union
++from typing import Optional, Union
+ 
+ import isce3
+ import numpy as np
+ from pybind_isce3.unwrap import _snaphu_unwrap
+ 
+ 
+-TransmitMode = Literal["pingpong", "repeat_pass", "single_antenna_transmit"]
+-TransmitMode.__doc__ = """Radar transmit mode
+-
+-    'pingpong' and 'repeat_pass' modes indicate that both antennas both
+-    transmitted and received. Both modes have the same effect in the algorithm.
+-
+-    'single_antenna_transmit' indicates that a single antenna was used to
+-    transmit while both antennas received. In this mode, the baseline is
+-    effectively halved.
+-    """
+-
+-
+ @dataclass(frozen=True)
+ class TopoCostParams:
+     r"""Configuration parameters for SNAPHU "topo" cost mode
+@@ -159,7 +147,7 @@ class TopoCostParams:
+     range_res: float
+     az_res: float
+     wavelength: float
+-    transmit_mode: TransmitMode
++    transmit_mode: str
+     altitude: float
+     earth_radius: float = 6_378_000.0
+     kds: float = 0.02
+@@ -772,9 +760,6 @@ def from_flat_file(
+         raster.data[i0:i1] = mmap[i0:i1]
+ 
+ 
+-CostMode = Literal["topo", "defo", "smooth", "p-norm"]
+-CostMode.__doc__ = """SNAPHU cost mode options"""
+-
+ CostParams = Union[
+     TopoCostParams, DefoCostParams, SmoothCostParams, PNormCostParams,
+ ]
+@@ -787,7 +772,7 @@ def unwrap(
+     igram: isce3.io.gdal.Raster,
+     corr: isce3.io.gdal.Raster,
+     nlooks: float,
+-    cost: CostMode = "smooth",
++    cost: str = "smooth",
+     cost_params: Optional[CostParams] = None,
+     pwr: Optional[isce3.io.gdal.Raster] = None,
+     mask: Optional[isce3.io.gdal.Raster] = None,
