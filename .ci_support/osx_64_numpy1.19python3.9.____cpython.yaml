@@ -15,7 +15,7 @@ cxx_compiler_version:
 fftw:
 - '3'
 gdal:
-- '3.4'
+- '3.5'
 llvm_openmp:
 - '13'
 macos_machine:
