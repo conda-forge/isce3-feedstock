@@ -1,5 +1,5 @@
 {% set name = "isce3" %}
-{% set version = "0.6.0" %}
+{% set version = "0.7.0" %}
 
 package:
   name: {{ name|lower }}
@@ -7,10 +7,10 @@ package:
 
 source:
   url: https://github.com/isce-framework/isce3/archive/v{{ version }}.tar.gz
-  sha256: 138b4b72beec74c1c002231caffc6920dda301518fdee328037cd7eefe92b8b4
+  sha256: d371f57198303d54c1c9c0b95663998ab09527b0b126cee2db3afb8b1317fe2b
 
 build:
-  number: 1
+  number: 0
   skip: true  # [win or py<36]
 
 requirements:
@@ -60,7 +60,7 @@ test:
     - ctest --output-on-failure -E '(workflows.stage_dem|pybind.focus.presum)'
   imports:
     - isce3
-    - pybind_isce3
+    - nisar
 
 about:
   home: https://github.com/isce-framework/isce3
