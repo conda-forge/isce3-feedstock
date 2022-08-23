@@ -38,6 +38,7 @@ requirements:
     - shapely
     - yamale
   run:
+    - backoff
     - fftw
     - gdal
     - h5py
