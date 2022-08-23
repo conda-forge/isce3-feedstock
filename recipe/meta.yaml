@@ -10,7 +10,7 @@ source:
   sha256: 263cef0a1d623d0b209a47c38e2c3a888e627a51834adfbd523845be907ac2e6
 
 build:
-  number: 0
+  number: 1
   skip: true  # [win or py<36]
 
 requirements:
@@ -38,6 +38,7 @@ requirements:
     - shapely
     - yamale
   run:
+    - backoff
     - fftw
     - gdal
     - h5py
