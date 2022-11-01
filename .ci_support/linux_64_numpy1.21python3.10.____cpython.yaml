@@ -21,10 +21,6 @@ gdal:
 numpy:
 - '1.21'
 pin_run_as_build:
-  fftw:
-    max_pin: x
-  gdal:
-    max_pin: x.x
   python:
     min_pin: x.x
     max_pin: x.x
