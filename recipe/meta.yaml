@@ -8,9 +8,11 @@ package:
 source:
   url: https://github.com/isce-framework/isce3/archive/v{{ version }}.tar.gz
   sha256: 263cef0a1d623d0b209a47c38e2c3a888e627a51834adfbd523845be907ac2e6
+  patches:
+    - default-factory.patch
 
 build:
-  number: 1
+  number: 2
   skip: true  # [win or py<36]
 
 requirements:

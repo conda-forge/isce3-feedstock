@@ -21,12 +21,8 @@ llvm_openmp:
 macos_machine:
 - x86_64-apple-darwin13.4.0
 numpy:
-- '1.19'
+- '1.20'
 pin_run_as_build:
-  fftw:
-    max_pin: x
-  gdal:
-    max_pin: x.x
   python:
     min_pin: x.x
     max_pin: x.x
