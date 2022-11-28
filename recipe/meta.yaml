@@ -41,11 +41,8 @@ requirements:
     - yamale
   run:
     - backoff
-    - fftw
     - gdal
     - h5py
-    - hdf5
-    - libgdal
     - llvm-openmp  # [osx]
     - {{ pin_compatible('numpy') }}
     - _openmp_mutex  # [not osx]
