@@ -10,6 +10,7 @@ source:
   sha256: 263cef0a1d623d0b209a47c38e2c3a888e627a51834adfbd523845be907ac2e6
   patches:
     - default-factory.patch
+    - remove_ih5dataset_projections.patch
 
 build:
   number: 3
