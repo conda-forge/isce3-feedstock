@@ -13,7 +13,7 @@ source:
     - remove_ih5dataset_projections.patch
 
 build:
-  number: 3
+  number: 4
   skip: true  # [win or py<36]
 
 requirements:
@@ -28,6 +28,7 @@ requirements:
     - gdal
     - gmock
     - gtest
+    - libgdal
     - numpy
     - pybind11
     - python
