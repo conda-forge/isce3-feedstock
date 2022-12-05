@@ -1,5 +1,5 @@
 {% set name = "isce3" %}
-{% set version = "0.8.0" %}
+{% set version = "0.9.0" %}
 
 package:
   name: {{ name|lower }}
@@ -7,13 +7,13 @@ package:
 
 source:
   url: https://github.com/isce-framework/isce3/archive/v{{ version }}.tar.gz
-  sha256: 263cef0a1d623d0b209a47c38e2c3a888e627a51834adfbd523845be907ac2e6
+  sha256: 04f095e8e4e0ba23c64ef8b87021c88e5df652699bbd81be738e1352e43a47b6
   patches:
     - default-factory.patch
     - remove_ih5dataset_projections.patch
 
 build:
-  number: 4
+  number: 0
   skip: true  # [win or py<36]
 
 requirements:
