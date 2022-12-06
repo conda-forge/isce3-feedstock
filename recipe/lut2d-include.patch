@@ -1,0 +1,10 @@
+--- a/cxx/isce3/geocode/geocodeSlc.h
++++ b/cxx/isce3/geocode/geocodeSlc.h
+@@ -1,6 +1,7 @@
+ #pragma once
+ #include <cstddef>
+ #include <isce3/core/EMatrix.h>
++#include <isce3/core/LUT2d.h>
+ #include <isce3/core/forward.h>
+ #include <isce3/core/Poly2d.h>
+ #include <isce3/io/forward.h>
