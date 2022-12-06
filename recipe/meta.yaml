@@ -8,6 +8,8 @@ package:
 source:
   url: https://github.com/isce-framework/isce3/archive/v{{ version }}.tar.gz
   sha256: 04f095e8e4e0ba23c64ef8b87021c88e5df652699bbd81be738e1352e43a47b6
+  patches:
+    - lut2d-include.patch
 
 build:
   number: 0
