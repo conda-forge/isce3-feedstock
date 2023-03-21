@@ -4,7 +4,7 @@ set -euo pipefail
 # https://github.com/HDFGroup/hdf5/issues/2422
 sed -i 's/-I[^ ]+H5FDsubfiling//' \
     "$(which h5cc)" \
-    "$(which h5++)"
+    "$(which h5c++)"
 
 mkdir build && cd build
 
