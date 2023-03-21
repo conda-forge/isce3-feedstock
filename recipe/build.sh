@@ -3,8 +3,8 @@ set -euo pipefail
 # Workaround for leftover build directory paths in HDF5 installation
 # https://github.com/HDFGroup/hdf5/issues/2422
 sed -i 's/-I[^ ]+H5FDsubfiling//' \
-    "$CONDA_PREFIX/bin/h5cc" \
-    "$CONDA_PREFIX/bin/h5c++"
+    "$BUILD_PREFIX/bin/h5cc" \
+    "$BUILD_PREFIX/bin/h5c++"
 
 mkdir build && cd build
 
