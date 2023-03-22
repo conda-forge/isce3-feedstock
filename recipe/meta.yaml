@@ -27,6 +27,7 @@ requirements:
     - gdal
     - gmock
     - gtest
+    - hdf5
     - libgdal
     - numpy
     - pybind11
