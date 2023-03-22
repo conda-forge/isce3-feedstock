@@ -16,6 +16,8 @@ fftw:
 - '3'
 gdal:
 - '3.6'
+hdf5:
+- 1.12.2
 libgdal:
 - '3.6'
 llvm_openmp:
