@@ -1,0 +1,12 @@
+diff --git a/cxx/isce3/signal/Looks.cpp b/cxx/isce3/signal/Looks.cpp
+index 5742e6e7d..fc76278d1 100644
+--- a/cxx/isce3/signal/Looks.cpp
++++ b/cxx/isce3/signal/Looks.cpp
+@@ -392,7 +392,6 @@ void isce3::signal::Looks<T>::multilook(std::valarray<std::complex<T>>& input,
+     output /= (_colsLooks * _rowsLooks);
+ }
+ 
+-template class isce3::signal::Looks<int>;
+ template class isce3::signal::Looks<float>;
+ template class isce3::signal::Looks<double>;
+ 
