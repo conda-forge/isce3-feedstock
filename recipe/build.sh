@@ -6,6 +6,9 @@ sed -i.tmp 's/-I.*H5FDsubfiling//' \
     "$(which h5cc)" \
     "$(which h5c++)"
 
+# Disable availability checks on macOS
+export CXXFLAGS="${CXXFLAGS} -D_LIBCPP_DISABLE_AVAILABILITY"
+
 mkdir build && cd build
 
 # Build without CUDA support or vendored libs
