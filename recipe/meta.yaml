@@ -10,7 +10,6 @@ source:
   sha256: a7b82159b8e7224a790d26e752a0c9aac883e2a39f2b4a90ebf827f91dd971fa
   patches:
     - lut2d-include.patch
-    - looks-int.patch
 
 build:
   number: 0
