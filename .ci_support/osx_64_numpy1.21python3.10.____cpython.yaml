@@ -15,11 +15,11 @@ cxx_compiler_version:
 fftw:
 - '3'
 gdal:
-- '3.6'
+- '3.7'
 hdf5:
 - 1.14.0
 libgdal:
-- '3.6'
+- '3.7'
 llvm_openmp:
 - '15'
 macos_machine:
