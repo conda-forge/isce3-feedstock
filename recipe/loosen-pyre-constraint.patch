@@ -1,0 +1,11 @@
+--- a/extern/CMakeLists.txt
++++ b/extern/CMakeLists.txt
+@@ -130,7 +130,7 @@ macro(getpackage_pyre)
+                 )
+         endif()
+     else()
+-        find_package(pyre 1.11.2 REQUIRED CONFIG)
++        find_package(pyre REQUIRED CONFIG)
+     endif()
+ endmacro()
+ 
