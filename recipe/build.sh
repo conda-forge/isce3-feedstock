@@ -1,11 +1,5 @@
 set -euo pipefail
 
-# Workaround for leftover build directory paths in HDF5 installation
-# https://github.com/HDFGroup/hdf5/issues/2422
-sed -i.tmp 's/-I.*H5FDsubfiling//' \
-    "$(which h5cc)" \
-    "$(which h5c++)"
-
 # Disable availability checks on macOS
 export CXXFLAGS="${CXXFLAGS} -D_LIBCPP_DISABLE_AVAILABILITY"
 
