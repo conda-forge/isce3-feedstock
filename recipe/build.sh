@@ -6,7 +6,7 @@ export CXXFLAGS="${CXXFLAGS} -D_LIBCPP_DISABLE_AVAILABILITY"
 mkdir build && cd build
 
 # Build without CUDA support or vendored libs
-cmake .. \
+cmake ${CMAKE_ARGS} .. \
     -DPython_EXECUTABLE=$PYTHON \
     -DISCE3_FETCH_DEPS=OFF \
     -DCMAKE_BUILD_TYPE=Release \
