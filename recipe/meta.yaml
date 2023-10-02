@@ -1,5 +1,5 @@
 {% set name = "isce3" %}
-{% set version = "0.15.0" %}
+{% set version = "0.16.0" %}
 
 package:
   name: {{ name|lower }}
@@ -7,10 +7,10 @@ package:
 
 source:
   url: https://github.com/isce-framework/isce3/archive/v{{ version }}.tar.gz
-  sha256: b9fb8664120148fd051abc54f3600412d6cce0202e107a44a775fa16bc5e074d
+  sha256: 9162fe6fec4ef04a88b72a42d23c81c86369d7659bf26f741a97e3ea08901e11
   patches:
     - lut2d-include.patch
-    - loosen-pyre-constraint.patch
+    - missing-annotations.patch
 
 build:
   number: 0
@@ -37,7 +37,7 @@ requirements:
     - numpy
     - pybind11
     - python
-    - pyre >=1.11.2,<=1.12.1
+    - pyre >=1.12.1,<=1.13.0
 
     # Needed for ctests in build.sh
     - h5py
@@ -53,7 +53,7 @@ requirements:
     - llvm-openmp  # [osx]
     - {{ pin_compatible('numpy') }}
     - _openmp_mutex  # [not osx]
-    - pyre >=1.11.2,<=1.12.1
+    - pyre >=1.12.1,<=1.13.0
     - python
     - ruamel.yaml
     - scipy
