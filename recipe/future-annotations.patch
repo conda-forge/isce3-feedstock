@@ -1,0 +1,7 @@
+--- a/python/packages/isce3/focus/sar_duration.py
++++ b/python/packages/isce3/focus/sar_duration.py
+@@ -1,3 +1,4 @@
++from __future__ import annotations
+ import isce3
+ from isce3.core import Orbit, Ellipsoid
+ import numpy as np
