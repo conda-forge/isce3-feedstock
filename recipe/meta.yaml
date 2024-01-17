@@ -10,7 +10,6 @@ source:
   sha256: a7de6296db3499ce0ce9f3301556585b8ec55ba946c5deb54feb6d8465dc9625
   patches:
     - lut2d-include.patch
-    - future-annotations.patch
 
 build:
   number: 0
