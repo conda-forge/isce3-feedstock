@@ -1,5 +1,5 @@
 {% set name = "isce3" %}
-{% set version = "0.19.2" %}
+{% set version = "0.20.0" %}
 
 package:
   name: {{ name|lower }}
@@ -7,7 +7,7 @@ package:
 
 source:
   url: https://github.com/isce-framework/isce3/archive/v{{ version }}.tar.gz
-  sha256: 9bb4f1befdf9c2dbd45a0fb363fe1037910f031acb1c9cbe1f2b9b1458b6f06a
+  sha256: d8c9b734e0e3b7ea1a5b27e0833e793c0f0b280386ddc69297ba86ad6de6b887
   patches:
     - lut2d-include.patch
 
