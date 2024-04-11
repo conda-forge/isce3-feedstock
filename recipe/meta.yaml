@@ -1,5 +1,5 @@
 {% set name = "isce3" %}
-{% set version = "0.15.0" %}
+{% set version = "0.15.1" %}
 
 package:
   name: {{ name|lower }}
@@ -7,13 +7,13 @@ package:
 
 source:
   url: https://github.com/isce-framework/isce3/archive/v{{ version }}.tar.gz
-  sha256: b9fb8664120148fd051abc54f3600412d6cce0202e107a44a775fa16bc5e074d
+  sha256: 1e353031c7ee415fffd7f185f72dddda6739a290167692160408a6bb0cf74a19
   patches:
     - lut2d-include.patch
     - loosen-pyre-constraint.patch
 
 build:
-  number: 1
+  number: 0
   skip: true  # [win or py<36]
 
 requirements:
