@@ -17,6 +17,15 @@ build:
   number: {{ number }}
   skip: true  # [win or py<36]
 
+test:
+  requires:
+    - cmake
+  commands:
+    - ctest --output-on-failure -E '(workflows.stage_dem|pybind.focus.presum)'
+  imports:
+    - isce3
+    - nisar
+
 outputs:
   # A meta-package to select CPU or GPU build for faiss.
   - name: {{ name|lower }}
@@ -89,15 +98,6 @@ outputs:
     test:
       imports:
         - isce3
-
-test:
-  requires:
-    - cmake
-  commands:
-    - ctest --output-on-failure -E '(workflows.stage_dem|pybind.focus.presum)'
-  imports:
-    - isce3
-    - nisar
 
 about:
   home: https://github.com/isce-framework/isce3
