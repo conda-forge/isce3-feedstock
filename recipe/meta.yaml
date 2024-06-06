@@ -53,6 +53,7 @@ outputs:
         - gmock
         - gtest
         - hdf5
+        - libcufft-dev  # [(cuda_compiler_version or "").startswith("12")]
         - libgdal
         - numpy
         - pybind11
