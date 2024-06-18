@@ -74,6 +74,7 @@ outputs:
         - {{ pin_compatible('numpy') }}
         - _openmp_mutex  # [not osx]
         - pyre >=1.12.1,<=1.13.0
+        - pysolid
         - python
         - ruamel.yaml
         - scipy
