@@ -12,6 +12,7 @@ source:
   sha256: 02c45ef43167385e901f781f19706bb60da77cf68df0b682ebc5f6b30d1b110d
   patches:
     - lut2d-include.patch
+    - py38.patch
 
 build:
   number: {{ number }}
