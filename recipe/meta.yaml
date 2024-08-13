@@ -49,6 +49,7 @@ outputs:
         - cmake
         - ninja
       host:
+        - cuda-version {{ cuda_compiler_version }}  # [cuda_compiler_version != "None"]
         - eigen
         - fftw
         - gdal
