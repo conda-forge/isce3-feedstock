@@ -1,5 +1,5 @@
 {% set name = "isce3" %}
-{% set version = "0.20.0" %}
+{% set version = "0.22.1" %}
 {% set number = 1 %}
 {% set isce3_proc_type = "cuda" if cuda_compiler_version != "None" else "cpu" %}
 
@@ -9,9 +9,11 @@ package:
 
 source:
   url: https://github.com/isce-framework/isce3/archive/v{{ version }}.tar.gz
-  sha256: d8c9b734e0e3b7ea1a5b27e0833e793c0f0b280386ddc69297ba86ad6de6b887
+  sha256: 40f7dff049732a6ee529e7725eded9e7541ce2aa67c3d11d3bf4037b4e1a3cd7
   patches:
     - lut2d-include.patch
+    - py38.patch
+    - no-using.patch  # fix build with gdal 3.9
 
 build:
   number: {{ number }}
@@ -32,7 +34,7 @@ outputs:
     version: {{ version }}
     script: build-pkg.sh
     build:
-      string: "py{{ CONDA_PY }}h{{ PKG_HASH }}_{{ number }}_{{ isce3_proc_type }}"                                                  # [cuda_compiler_version == "None"]
+      string: "py{{ CONDA_PY }}h{{ PKG_HASH }}_{{ number }}_{{ isce3_proc_type }}"  # [cuda_compiler_version == "None"]
       string: "py{{ CONDA_PY }}cuda{{ cuda_compiler_version|replace('.', '') }}h{{ PKG_HASH }}_{{ number }}_{{ isce3_proc_type }}"  # [cuda_compiler_version != "None"]
     requirements:
       build:
@@ -75,6 +77,7 @@ outputs:
         - {{ pin_compatible('numpy') }}
         - _openmp_mutex  # [not osx]
         - pyre >=1.12.1,<=1.13.0
+        - pysolid
         - python
         - ruamel.yaml
         - scipy
