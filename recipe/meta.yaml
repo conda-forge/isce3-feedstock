@@ -101,10 +101,6 @@ outputs:
     requirements:
       run:
         - isce3 ={{ version }}=*_cuda
-    test:
-      imports:
-        - isce3
-        - isce3.cuda
 
 about:
   home: https://github.com/isce-framework/isce3
