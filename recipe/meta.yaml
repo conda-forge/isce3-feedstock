@@ -24,9 +24,9 @@ test:
     - cmake
   commands:
     - ctest --output-on-failure -E '(workflows.stage_dem|pybind.focus.presum)'
-  imports:
-    - isce3
-    - nisar
+  imports:   # [cuda_compiler_version == "None"]
+    - isce3  # [cuda_compiler_version == "None"]
+    - nisar  # [cuda_compiler_version == "None"]
 
 outputs:
   # A meta-package to select CPU or GPU build for faiss.
@@ -101,6 +101,15 @@ outputs:
     requirements:
       run:
         - isce3 ={{ version }}=*_cuda
+    test:
+      {% set modules = [
+          "isce3",
+          "isce3.cuda",
+      ] %}
+      commands:
+        {% for m in modules %}
+        - python -c 'import pkgutil; import sys; sys.exit(pkgutil.find_loader("{module}") is None)'
+        {% endfor %}
 
 about:
   home: https://github.com/isce-framework/isce3
