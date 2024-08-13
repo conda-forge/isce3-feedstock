@@ -52,13 +52,14 @@ outputs:
         - ninja
       host:
         - cuda-version {{ cuda_compiler_version }}  # [cuda_compiler_version != "None"]
+        - cuda-cudart-dev  # [(cuda_compiler_version or "None").startswith("12")]
         - eigen
         - fftw
         - gdal
         - gmock
         - gtest
         - hdf5
-        - libcufft-dev  # [(cuda_compiler_version or "").startswith("12")]
+        - libcufft-dev     # [(cuda_compiler_version or "").startswith("12")]
         - libgdal
         - numpy
         - pybind11
@@ -105,7 +106,7 @@ outputs:
         - isce3 ={{ version }}=*_cuda
     test:
       commands:
-        - python -c 'import pkgutil; import sys; sys.exit(pkgutil.find_loader("isce3") is None)'
+        - python -c 'import pkgutil; import sys; sys.exit(pkgutil.find_loader("isce3.cuda") is None)'
 
 about:
   home: https://github.com/isce-framework/isce3
