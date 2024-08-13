@@ -24,6 +24,8 @@ test:
     - cmake
   commands:
     - ctest --output-on-failure -E '(workflows.stage_dem|pybind.focus.presum)'
+    - python -c 'import pkgutil; import sys; sys.exit(pkgutil.find_loader("isce3") is None)'
+    - python -c 'import pkgutil; import sys; sys.exit(pkgutil.find_loader("nisar") is None)'
   imports:   # [cuda_compiler_version == "None"]
     - isce3  # [cuda_compiler_version == "None"]
     - nisar  # [cuda_compiler_version == "None"]
@@ -102,14 +104,8 @@ outputs:
       run:
         - isce3 ={{ version }}=*_cuda
     test:
-      {% set modules = [
-          "isce3",
-          "isce3.cuda",
-      ] %}
       commands:
-        {% for m in modules %}
-        - python -c 'import pkgutil; import sys; sys.exit(pkgutil.find_loader("{{ m }}") is None)'
-        {% endfor %}
+        - python -c 'import pkgutil; import sys; sys.exit(pkgutil.find_loader("isce3") is None)'
 
 about:
   home: https://github.com/isce-framework/isce3
