@@ -108,7 +108,7 @@ outputs:
       ] %}
       commands:
         {% for m in modules %}
-        - python -c 'import pkgutil; import sys; sys.exit(pkgutil.find_loader("{module}") is None)'
+        - python -c 'import pkgutil; import sys; sys.exit(pkgutil.find_loader("{{ module }}") is None)'
         {% endfor %}
 
 about:
