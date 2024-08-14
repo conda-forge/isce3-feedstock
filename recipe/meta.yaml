@@ -1,6 +1,6 @@
 {% set name = "isce3" %}
 {% set version = "0.22.1" %}
-{% set number = 1 %}
+{% set number = 2 %}
 {% set isce3_proc_type = "cuda" if cuda_compiler_version != "None" else "cpu" %}
 
 package:
@@ -24,9 +24,11 @@ test:
     - cmake
   commands:
     - ctest --output-on-failure -E '(workflows.stage_dem|pybind.focus.presum)'
-  imports:
-    - isce3
-    - nisar
+    - python -c 'import pkgutil; import sys; sys.exit(pkgutil.find_loader("isce3") is None)'
+    - python -c 'import pkgutil; import sys; sys.exit(pkgutil.find_loader("nisar") is None)'
+  imports:   # [cuda_compiler_version == "None"]
+    - isce3  # [cuda_compiler_version == "None"]
+    - nisar  # [cuda_compiler_version == "None"]
 
 outputs:
   # A meta-package to select CPU or GPU build for faiss.
@@ -49,12 +51,15 @@ outputs:
         - cmake
         - ninja
       host:
+        - cuda-version {{ cuda_compiler_version }}  # [cuda_compiler_version != "None"]
+        - cuda-cudart-dev  # [(cuda_compiler_version or "None").startswith("12")]
         - eigen
         - fftw
         - gdal
         - gmock
         - gtest
         - hdf5
+        - libcufft-dev     # [(cuda_compiler_version or "").startswith("12")]
         - libgdal
         - numpy
         - pybind11
@@ -100,9 +105,8 @@ outputs:
       run:
         - isce3 ={{ version }}=*_cuda
     test:
-      imports:
-        - isce3
-        - isce3.cuda
+      commands:
+        - python -c 'import pkgutil; import sys; sys.exit(pkgutil.find_loader("isce3.cuda") is None)'
 
 about:
   home: https://github.com/isce-framework/isce3
