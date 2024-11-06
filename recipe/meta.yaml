@@ -59,6 +59,8 @@ outputs:
         - hdf5
         - libcufft-dev     # [(cuda_compiler_version or "").startswith("12")]
         - libgdal
+        - libgdal-hdf5
+        - libgdal-netcdf
         - numpy
         - pybind11
         - python
