@@ -58,7 +58,7 @@ outputs:
         - gtest
         - hdf5
         - libcufft-dev     # [(cuda_compiler_version or "").startswith("12")]
-        - libgdal
+        - libgdal-core
         - libgdal-hdf5
         - libgdal-netcdf
         - numpy
