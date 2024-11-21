@@ -78,7 +78,6 @@ outputs:
         - gdal
         - h5py
         - llvm-openmp  # [osx]
-        - {{ pin_compatible('numpy') }}
         - _openmp_mutex  # [not osx]
         - pyre >=1.12.1,<=1.13.0
         - pysolid
