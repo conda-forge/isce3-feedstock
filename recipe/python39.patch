@@ -1,0 +1,19 @@
+commit b90f266fdbdf1ad6d79a20d61bfb54ca092b6f10
+Author: Heresh Fattahi <heresh.fattahi@jpl.nasa.gov>
+Date:   Wed Jan 29 20:34:33 2025 -0800
+
+    fix issue with biwise OR for type hinting (#2125)
+
+diff --git a/python/packages/nisar/workflows/helpers.py b/python/packages/nisar/workflows/helpers.py
+index ca58de0bd..deec38af8 100644
+--- a/python/packages/nisar/workflows/helpers.py
++++ b/python/packages/nisar/workflows/helpers.py
+@@ -1,7 +1,7 @@
+ '''
+ collection of useful functions used across workflows
+ '''
+-
++from __future__ import annotations
+ import datetime
+ import os
+ import pathlib
