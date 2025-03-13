@@ -74,6 +74,7 @@ outputs:
         - shapely
         - yamale
       run:
+        - __cuda >={{ cuda_compiler_version }}  # [cuda_compiler_version != "None"]
         - backoff
         - gdal
         - h5py
