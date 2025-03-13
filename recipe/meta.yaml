@@ -1,6 +1,6 @@
 {% set name = "isce3" %}
 {% set version = "0.24.3" %}
-{% set number = 3 %}
+{% set number = 4 %}
 {% set isce3_proc_type = "cuda" if cuda_compiler_version != "None" else "cpu" %}
 
 package:
