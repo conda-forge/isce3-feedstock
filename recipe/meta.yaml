@@ -2,7 +2,7 @@
 {% set version = "0.24.3" %}
 {% set number = 5 %}
 {% set isce3_proc_type = "cuda" if cuda_compiler_version != "None" else "cpu" %}
-{% set cuda_major = cuda_compiler_version | default("11.0") | split(".")[0] %}
+{% set cuda_major = cuda_compiler_version | default("11.0") | split(".") | first %}
 
 package:
   name: {{ name|lower }}
