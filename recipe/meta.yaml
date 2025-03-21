@@ -13,6 +13,7 @@ source:
   sha256: b470f65672d6dad4837deb7a73bcd7ca2b15b05d2d4e3ea0dd76f84dbbbb0497
   patches:
     - lut2d-include.patch
+    - extended-lambda.patch
 
 build:
   number: {{ number }}
