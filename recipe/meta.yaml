@@ -1,7 +1,8 @@
 {% set name = "isce3" %}
 {% set version = "0.24.3" %}
-{% set number = 4 %}
+{% set number = 5 %}
 {% set isce3_proc_type = "cuda" if cuda_compiler_version != "None" else "cpu" %}
+{% set cuda_major = environ.get("cuda_compiler_version", "11.8").split(".")[0] %}
 
 package:
   name: {{ name|lower }}
@@ -12,6 +13,7 @@ source:
   sha256: b470f65672d6dad4837deb7a73bcd7ca2b15b05d2d4e3ea0dd76f84dbbbb0497
   patches:
     - lut2d-include.patch
+    - extended-lambda.patch
 
 build:
   number: {{ number }}
@@ -46,7 +48,7 @@ outputs:
         - {{ compiler('cxx') }}
         - {{ compiler('cuda') }}  # [cuda_compiler_version != "None"]
         - {{ stdlib('c') }}
-        - cmake
+        - cmake >=3.23  # to support CUDA_ARCHITECTURES=all-major
         - ninja
       host:
         - cuda-version {{ cuda_compiler_version }}  # [cuda_compiler_version != "None"]
@@ -74,7 +76,7 @@ outputs:
         - shapely
         - yamale
       run:
-        - __cuda >={{ cuda_compiler_version }}  # [cuda_compiler_version != "None"]
+        - __cuda >={{ cuda_major }}  # [cuda_compiler_version != "None"]
         - backoff
         - gdal
         - h5py

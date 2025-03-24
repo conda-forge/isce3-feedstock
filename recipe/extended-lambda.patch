@@ -1,0 +1,31 @@
+--- a/.cmake/IsceCudaHelper.cmake
++++ b/.cmake/IsceCudaHelper.cmake
+@@ -58,6 +58,7 @@ endfunction()
+ # TARGET_ARCHS
+ #   target architectures
+ function(set_cuda_arch_flags TARGET_ARCHS)
++
+     # use default compilation flags if input is empty
+     if("${TARGET_ARCHS}" STREQUAL "")
+         return()
+@@ -86,8 +87,6 @@ function(set_cuda_arch_flags TARGET_ARCHS)
+         # add gencode flag
+         set(FLAGS "${FLAGS} -gencode=arch=compute_${ARCH},code=sm_${ARCH}")
+     endforeach()
+-    # enable lambdas in device code
+-    set(FLAGS "${FLAGS} --extended-lambda")
+     # strip leading whitespace
+     string(STRIP "${FLAGS}" FLAGS)
+ 
+--- a/CMakeLists.txt
++++ b/CMakeLists.txt
+@@ -52,6 +52,9 @@ if (WITH_CUDA)
+         message(FATAL_ERROR "CUDA version must be at least 11. Detected ${CUDA_VERSION}")
+     endif()
+ 
++    # enable lambdas in device code
++    set(CMAKE_CUDA_FLAGS "${CMAKE_CUDA_FLAGS} --extended-lambda")
++
+     # specify target CUDA device architecture(s)
+     set_cuda_arch_flags("${ISCE_CUDA_ARCHS}")
+ 
