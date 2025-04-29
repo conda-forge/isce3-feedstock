@@ -1,5 +1,5 @@
 {% set name = "isce3" %}
-{% set version = "0.24.3" %}
+{% set version = "0.24.4" %}
 {% set number = 5 %}
 {% set isce3_proc_type = "cuda" if cuda_compiler_version != "None" else "cpu" %}
 {% set cuda_major = environ.get("cuda_compiler_version", "11.8").split(".")[0] %}
@@ -10,7 +10,7 @@ package:
 
 source:
   url: https://github.com/isce-framework/isce3/archive/v{{ version }}.tar.gz
-  sha256: b470f65672d6dad4837deb7a73bcd7ca2b15b05d2d4e3ea0dd76f84dbbbb0497
+  sha256: a31dc9e8719572aeeffaa5aa79eb513bb88470ba9d2119092b4e7eff8754cd35
   patches:
     - lut2d-include.patch
     - extended-lambda.patch
