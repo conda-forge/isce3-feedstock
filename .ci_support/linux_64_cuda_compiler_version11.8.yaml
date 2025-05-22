@@ -25,11 +25,11 @@ docker_image:
 fftw:
 - '3'
 gdal:
-- '3.10'
+- '3.11'
 hdf5:
 - 1.14.3
 libgdal_core:
-- '3.10'
+- '3.11'
 numpy:
 - '2.0'
 - '2.0'
