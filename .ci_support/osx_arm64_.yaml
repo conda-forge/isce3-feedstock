@@ -23,21 +23,17 @@ cxx_compiler_version:
 fftw:
 - '3'
 gdal:
-- '3.10'
+- '3.11'
 hdf5:
-- 1.14.3
+- 1.14.6
 libgdal_core:
-- '3.10'
+- '3.11'
 llvm_openmp:
 - '18'
 macos_machine:
 - arm64-apple-darwin20.0.0
 numpy:
-- '2.0'
-- '2.0'
-- '2.0'
 - '2'
-- '2.0'
 pin_run_as_build:
   python:
     min_pin: x.x
@@ -53,5 +49,3 @@ target_platform:
 zip_keys:
 - - c_compiler_version
   - cxx_compiler_version
-- - python
-  - numpy
