@@ -197,5 +197,5 @@ In order to produce a uniquely identifiable distribution:
 Feedstock Maintainers
 =====================
 
-* [@rtburns-jpl](https://github.com/rtburns-jpl/)
+* [@Tyler-g-hudson](https://github.com/Tyler-g-hudson)
 
