@@ -17,7 +17,7 @@ source:
 
 build:
   number: {{ build_number }}
-  skip: true  # [win or py<36]
+  skip: true  # [win]
 
 test:
   requires:
