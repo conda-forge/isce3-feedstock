@@ -1,11 +1,10 @@
-{% set name = "isce3" %}
 {% set version = "0.25.7" %}
 {% set build_number = 6 %}
 {% set isce3_proc_type = "cuda" if cuda_compiler_version != "None" else "cpu" %}
 {% set cuda_major = environ.get("cuda_compiler_version", "11.8").split(".")[0] %}
 
 package:
-  name: {{ name|lower }}
+  name: isce3-split
   version: {{ version }}
 
 source:
@@ -31,8 +30,7 @@ test:
     - nisar  # [cuda_compiler_version == "None"]
 
 outputs:
-  # A meta-package to select CPU or GPU build for faiss.
-  - name: {{ name|lower }}
+  - name: isce3
     version: {{ version }}
     script: build-pkg.sh
     build:
@@ -131,3 +129,4 @@ about:
 extra:
   recipe-maintainers:
     - Tyler-g-hudson
+  feedstock-name: isce3
