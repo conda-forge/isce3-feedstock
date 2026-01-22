@@ -197,5 +197,5 @@ In order to produce a uniquely identifiable distribution:
 Feedstock Maintainers
 =====================
 
-* [@Tyler-g-hudson](https://github.com/Tyler-g-hudson)
+* [@Tyler-g-hudson](https://github.com/Tyler-g-hudson/)
 
