@@ -17,3 +17,6 @@ cmake ${CMAKE_ARGS} .. \
     -GNinja
 
 ninja install
+
+cd ..
+rm -rf build
