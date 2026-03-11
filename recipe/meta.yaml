@@ -1,5 +1,5 @@
-{% set version = "0.25.7" %}
-{% set build_number = 6 %}
+{% set version = "0.25.8" %}
+{% set build_number = 0 %}
 {% set isce3_proc_type = "cuda" if cuda_compiler_version != "None" else "cpu" %}
 {% set cuda_major = environ.get("cuda_compiler_version", "11.8").split(".")[0] %}
 
@@ -9,7 +9,7 @@ package:
 
 source:
   url: https://github.com/isce-framework/isce3/archive/v{{ version }}.tar.gz
-  sha256: 25f5d5723bb9e064e5f4ca5dd1989fbf616db20e1cf3e0a56c3f6ff280ff856c
+  sha256: 5d7e769ac4262d0cfeb81df890137992d47d6d7fef8e25aeee9241817e75e0c6
   patches:
     - lut2d-include.patch
     - extended-lambda.patch
@@ -23,7 +23,7 @@ outputs:
     version: {{ version }}
     script: build-pkg.sh
     build:
-      string: "py{{ CONDA_PY }}h{{ PKG_HASH }}_{{ PKG_BUILDNUM }}_{{ isce3_proc_type }}"                                                  # [cuda_compiler_version == "None"]
+      string: "py{{ CONDA_PY }}h{{ PKG_HASH }}_{{ PKG_BUILDNUM }}_{{ isce3_proc_type }}"  # [cuda_compiler_version == "None"]
       string: "py{{ CONDA_PY }}cuda{{ cuda_compiler_version|replace('.', '') }}h{{ PKG_HASH }}_{{ PKG_BUILDNUM }}_{{ isce3_proc_type }}"  # [cuda_compiler_version != "None"]
     requirements:
       build:
