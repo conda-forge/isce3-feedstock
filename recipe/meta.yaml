@@ -127,5 +127,6 @@ about:
 
 extra:
   recipe-maintainers:
+    - jplzhan
     - Tyler-g-hudson
   feedstock-name: isce3
