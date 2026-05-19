@@ -40,7 +40,7 @@ outputs:
       host:
         - cuda-version {{ cuda_compiler_version }}  # [cuda_compiler_version != "None"]
         - cuda-cudart-dev  # [(cuda_compiler_version or "None").startswith("12")]
-        - eigen
+        - eigen >=3.3.7,<5.0 # Eigen jumped directly from 3.4 to 5.0 - there is no intervening v4.0 to worry about.
         - fftw
         - gdal
         - gmock
