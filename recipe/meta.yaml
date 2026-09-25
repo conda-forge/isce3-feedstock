@@ -1,4 +1,4 @@
-{% set version = "0.25.17" %}
+{% set version = "0.25.19" %}
 {% set build_number = 0 %}
 {% set isce3_proc_type = "cuda" if cuda_compiler_version != "None" else "cpu" %}
 {% set cuda_major = environ.get("cuda_compiler_version", "11.8").split(".")[0] %}
@@ -9,7 +9,7 @@ package:
 
 source:
   url: https://github.com/isce-framework/isce3/archive/v{{ version }}.tar.gz
-  sha256: 89352a9b41ed001ea0864370867cae03fc04c4f91dab23279215b8d7c8e0132f
+  sha256: 982c114cbc47fbfbf6471f42aa21997b684ae632b70fd35c8e39ffdac82995a9
   patches:
     - lut2d-include.patch
     - extended-lambda.patch
@@ -39,14 +39,14 @@ outputs:
         - ninja
       host:
         - cuda-version {{ cuda_compiler_version }}  # [cuda_compiler_version != "None"]
-        - cuda-cudart-dev  # [(cuda_compiler_version or "None").startswith("12")]
+        - cuda-cudart-dev  # [cuda_compiler_version != "None" and (cuda_compiler_version or "").startswith(("12", "13", "14", "15", "16", "17", "18", "19", "2"))]
         - eigen >=3.3.7,<5.0 # Eigen jumped directly from 3.4 to 5.0 - there is no intervening v4.0 to worry about.
         - fftw
         - gdal
         - gmock
         - gtest
         - hdf5
-        - libcufft-dev     # [(cuda_compiler_version or "").startswith("12")]
+        - libcufft-dev     # [cuda_compiler_version != "None" and (cuda_compiler_version or "").startswith(("12", "13", "14", "15", "16", "17", "18", "19", "2"))]
         - libgdal-core
         - libgdal-hdf5
         - libgdal-netcdf
@@ -81,8 +81,8 @@ outputs:
         - cmake
       commands:
         - ctest --output-on-failure -E '(workflows.stage_dem|pybind.focus.presum)'
-        - python -c 'import pkgutil; import sys; sys.exit(pkgutil.find_loader("isce3") is None)'
-        - python -c 'import pkgutil; import sys; sys.exit(pkgutil.find_loader("nisar") is None)'
+        - python -c 'import importlib.util; import sys; sys.exit(importlib.util.find_spec("isce3") is None)'
+        - python -c 'import importlib.util; import sys; sys.exit(importlib.util.find_spec("nisar") is None)'
       imports:   # [cuda_compiler_version == "None"]
         - isce3  # [cuda_compiler_version == "None"]
         - nisar  # [cuda_compiler_version == "None"]
@@ -105,7 +105,7 @@ outputs:
         - isce3 {{ version }} *_cuda
     test:
       commands:
-        - python -c 'import pkgutil; import sys; sys.exit(pkgutil.find_loader("isce3.cuda") is None)'
+        - python -c 'import importlib.util; import sys; sys.exit(importlib.util.find_spec("isce3.cuda") is None)'
 
 about:
   home: https://github.com/isce-framework/isce3
