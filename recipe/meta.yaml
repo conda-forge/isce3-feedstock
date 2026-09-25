@@ -39,14 +39,14 @@ outputs:
         - ninja
       host:
         - cuda-version {{ cuda_compiler_version }}  # [cuda_compiler_version != "None"]
-        - cuda-cudart-dev  # [cuda_compiler_version != "None" and int(cuda_compiler_version.split('.')[0]) >= 12]
+        - cuda-cudart-dev  # [(cuda_compiler_version or "None").startswith("12")]
         - eigen >=3.3.7,<5.0 # Eigen jumped directly from 3.4 to 5.0 - there is no intervening v4.0 to worry about.
         - fftw
         - gdal
         - gmock
         - gtest
         - hdf5
-        - libcufft-dev     # [cuda_compiler_version != "None" and int(cuda_compiler_version.split('.')[0]) >= 12]
+        - libcufft-dev     # [(cuda_compiler_version or "").startswith("12")]
         - libgdal-core
         - libgdal-hdf5
         - libgdal-netcdf
@@ -81,8 +81,8 @@ outputs:
         - cmake
       commands:
         - ctest --output-on-failure -E '(workflows.stage_dem|pybind.focus.presum)'
-        - python -c 'import sys; from importlib.util import find_spec; sys.exit(find_spec("isce3") is None)'
-        - python -c 'import sys; from importlib.util import find_spec; sys.exit(find_spec("nisar") is None)'
+        - python -c 'import pkgutil; import sys; sys.exit(pkgutil.find_loader("isce3") is None)'
+        - python -c 'import pkgutil; import sys; sys.exit(pkgutil.find_loader("nisar") is None)'
       imports:   # [cuda_compiler_version == "None"]
         - isce3  # [cuda_compiler_version == "None"]
         - nisar  # [cuda_compiler_version == "None"]
@@ -105,7 +105,7 @@ outputs:
         - isce3 {{ version }} *_cuda
     test:
       commands:
-        - python -c 'import sys; from importlib.util import find_spec; sys.exit(find_spec("isce3.cuda") is None)'
+        - python -c 'import pkgutil; import sys; sys.exit(pkgutil.find_loader("isce3.cuda") is None)'
 
 about:
   home: https://github.com/isce-framework/isce3
